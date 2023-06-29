@@ -8,6 +8,7 @@ searchButton.addEventListener("click", () => {
 });
 
 async function fetchMovieData(search) {
+  const parentCard = document.querySelector(".cards-parent");
   try {
     let response = await fetch(
       `https://www.omdbapi.com/?s=${search}&apikey=ee62d61b`
@@ -19,10 +20,10 @@ async function fetchMovieData(search) {
       ""
     );
 
-    const parentCard = document.querySelector(".cards-parent");
     parentCard.insertAdjacentHTML("afterbegin", moviesAllCards);
   } catch (error) {
     console.log(error);
+    parentCard.insertAdjacentHTML("afterbegin", "<h1>Oops...Not found!</h1>");
   }
 }
 
