@@ -1,7 +1,7 @@
-let searchButton = document.getElementById("submitButton");
+const searchButton = document.getElementById("submitButton");
 
 searchButton.addEventListener("click", () => {
-  let search = document.getElementById("searchMovie");
+  const search = document.getElementById("searchMovie");
   removeAllChildNodes();
   fetchMovieData(search.value);
   search.value = "";
@@ -10,25 +10,23 @@ searchButton.addEventListener("click", () => {
 async function fetchMovieData(search) {
   const parentCard = document.querySelector(".cards-parent");
   try {
-    let response = await fetch(
+    const response = await fetch(
       `https://www.omdbapi.com/?s=${search}&apikey=ee62d61b`
     );
-    let movieData = await response.json();
-    movieData = movieData.Search;
-    const moviesAllCards = movieData.reduce(
+    const movieData = await response.json();
+    const moviesAllCards = movieData.Search.reduce(
       (acc, curr) => acc + makeCard(curr),
       ""
     );
 
     parentCard.insertAdjacentHTML("afterbegin", moviesAllCards);
   } catch (error) {
-    console.log(error);
     parentCard.insertAdjacentHTML("afterbegin", "<h1>Oops...Not found!</h1>");
   }
 }
 
 function makeCard(card) {
-  let cardHtml = `
+  const cardHtml = `
     <div class="card">
             <img src=${card.Poster}
                 alt="not available" class="card-image">
