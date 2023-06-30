@@ -36,7 +36,7 @@ function makeCard(card) {
                 <div class="card-content">
             <h2>Title : ${card.Title}</h2>
             <h3>Year : ${card.Year}</h3>
-            <h4>Type : ${card.Type}</h4>
+            <h4 class="movie-type">Type : <span>${card.Type.toUpperCase()}</span></h4>
             </div>
         </div>
     `
