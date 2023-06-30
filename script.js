@@ -1,6 +1,7 @@
-const searchButton = document.getElementById("submitButton");
+const searchMovieForm = document.getElementById("searchForm");
 
-searchButton.addEventListener("click", () => {
+searchMovieForm.addEventListener("submit", (e) => {
+  e.preventDefault();
   const search = document.getElementById("searchMovie");
   removeAllChildNodes();
   fetchMovieData(search.value);
@@ -26,15 +27,20 @@ async function fetchMovieData(search) {
 }
 
 function makeCard(card) {
-  const cardHtml = `
+  const cardHtml =
+    card.Poster !== "N/A"
+      ? `
     <div class="card">
             <img src=${card.Poster}
                 alt="not available" class="card-image">
-            <h3>Title : ${card.Title}</h3>
-            <h4>Year : ${card.Year}</h4>
-            <h5>Type : ${card.Type}</h5>
+                <div class="card-content">
+            <h2>Title : ${card.Title}</h2>
+            <h3>Year : ${card.Year}</h3>
+            <h4>Type : ${card.Type}</h4>
+            </div>
         </div>
-    `;
+    `
+      : "<div></div>";
   return cardHtml;
 }
 
