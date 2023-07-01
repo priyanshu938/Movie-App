@@ -1,8 +1,8 @@
-const searchMovieForm = document.getElementById("searchForm");
+const searchMovieForm = document.querySelector("#searchForm");
 
 searchMovieForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const search = document.getElementById("searchMovie");
+  const search = document.querySelector("#searchMovie");
   fetchMovieData(search.value);
   search.value = "";
 });
@@ -22,7 +22,7 @@ async function fetchMovieData(search) {
 
 function bindMovieData(movies) {
   const parentCard = document.querySelector(".cards-parent");
-  const movieCardTemplate = document.getElementById("movie-card-template");
+  const movieCardTemplate = document.querySelector("#movie-card-template");
   parentCard.innerHTML = "";
   movies.map((movie) => {
     if (movie.Poster === "N/A") return;
